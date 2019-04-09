@@ -6,11 +6,11 @@
 '''
 
 #保存到本地的路径
-DOWNLOAD_PATH='F://pics//'
+DOWNLOAD_PATH='F://temps//'
 #图片保存的最大数量
 NUMBER_LIMIT=20
 #关键词（可以使用一段文字）
-KEYWORDS=''
+KEYWORDS='金银首饰'
 #下载时生成的前缀名
-PREFIX='myDownloads'
+PREFIX='myDownloads1'
 

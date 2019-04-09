@@ -12,13 +12,18 @@ def get_pictrue_data(url):
 def get_cur_date():
     return time.strftime("%Y-%m-%d",time.localtime(time.time()))
 
+
+from threadManager.multThread import MYSQL_LOCK
 def store_pictrue_to_mysql(data,info,suffix='jpg'):
     print("storing picture in MySQL database....and have key word --->",info)
     connect = pymysql.connect(config.DB_HOST, config.DB_USER, config.DB_PASSWORD, config.DB_DATABASE, config.DB_PORT)
     cursor=connect.cursor()
     sql="insert into mypics(picdata,picinfo,suffix) VALUES (%s,%s,%s);"
-    cursor.execute(sql,(pymysql.Binary(data),info,suffix))
-    connect.commit()
+    global MYSQL_LOCK
+    if MYSQL_LOCK.acquire():
+        cursor.execute(sql, (pymysql.Binary(data), info, suffix))
+        connect.commit()
+        MYSQL_LOCK.release()
 
 
 

@@ -34,6 +34,7 @@ def collect_in_page(url, path='', start=1):
                 return count
 
     print('page :', url, " collect finish! get picture number:",count)
+
     return count
 
 def enter(keyword,pgn):
